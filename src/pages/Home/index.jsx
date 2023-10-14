@@ -1,5 +1,6 @@
 import { Layout } from "../../Components/Layout"
-import {Card} from "../../Components/Card"
+import { Card } from "../../Components/Card"
+import { ProductDetail } from "../../Components/ProductDetail"
 import { useState, useEffect } from "react";
 
 const apiUrl = 'https://fakestoreapi.com';
@@ -29,6 +30,9 @@ function Home() {
             return <Card key={item.id} data={item} />
           })}
         </section>
+
+        <ProductDetail />
+
       </Layout>
     )
   }
