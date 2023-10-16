@@ -2,6 +2,7 @@ import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import { ProductDetail } from "../../Components/ProductDetail"
 import { useState, useEffect } from "react";
+import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 const apiUrl = 'https://fakestoreapi.com';
 
@@ -32,7 +33,7 @@ function Home() {
         </section>
 
         <ProductDetail />
-
+        <CheckoutSideMenu />
       </Layout>
     )
   }

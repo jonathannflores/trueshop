@@ -1,5 +1,3 @@
-import { ShoppingCartProvider } from '../../Context';
-
 import {useRoutes, BrowserRouter} from 'react-router-dom';
 import { Home } from '../Home';
 import { MyAccount } from '../MyAccount';
@@ -8,8 +6,10 @@ import {MyOrders} from '../MyOrders';
 import {SignIn} from '../SignIn';
 import {NotFound} from '../NotFound';
 import { Navbar } from '../../Components/Navbar';
-
+import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu';
+import { ShoppingCartProvider } from '../../Context';
 import './App.css';
+
 
 function AppRoutes(){
   let routes = useRoutes([
@@ -29,6 +29,7 @@ function App() {
       <BrowserRouter>
         <AppRoutes />
         <Navbar />
+        
       </BrowserRouter>
     </ShoppingCartProvider>
   )
