@@ -9,10 +9,10 @@ function Navbar(){
     const {count} = useContext(ShoppingCartContext)
 
     const navLeft=[
-        {
-            to: '/',
-            text: 'TrueShop',
-            className: 'font-semibold text-lg '},
+        // {
+        //     to: '/',
+        //     text: 'TrueShop',
+        //     className: 'font-semibold text-4xl text-green-500'},
         {
             to: '/',
             text: 'All',
@@ -73,12 +73,15 @@ function Navbar(){
         },
     ]
 
-    const textDecoration = 'underline underline-offset-4'
+    const textDecoration = 'underline underline-offset-4 text-green-500'
 
 
     return(
-        <nav className="bg-blue-950 flex justify-between items-center w-full top-0 px-8 py-6 z-20 fixed border-b-2 border-green-800">
+        <nav className="bg-white flex justify-between items-center w-full top-0 px-8 py-6 z-20 fixed border-b-2">
             <ul className="gap-4 flex items-center">
+                <li className='font-semibold text-4xl text-green-500'>
+                <NavLink to='/'>TrueShop</NavLink>
+                </li>
                 {navLeft.map(link=>(
                     <li key={link.text} className={link.className}>
                         <NavLink to={link.to} 

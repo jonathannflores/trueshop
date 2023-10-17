@@ -7,8 +7,11 @@ function ShoppingCartProvider( {children} ){
     // Shopping Cart : Increment Count
     const [count, setCount] = useState(0);
 
-    // Shopping Cart : Increment Count
+    // Shopping Cart : Array of products
     const [cartProducts, setCartProducts] = useState([]);
+    
+    // Shopping Cart : Order
+    const [order, setOrder] = useState([])
 
     // Product Detail : Open / Close
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
@@ -23,10 +26,13 @@ function ShoppingCartProvider( {children} ){
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
+
     return(
         <ShoppingCartContext.Provider value={{
             count,
             setCount,
+            order, 
+            setOrder,
             isProductDetailOpen,
             setIsProductDetailOpen,
             openProductDetail,
