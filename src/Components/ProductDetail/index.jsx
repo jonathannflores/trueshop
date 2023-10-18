@@ -10,11 +10,11 @@ function ProductDetail(){
     } = useContext(ShoppingCartContext)
 
     return(
-        <aside className={`${isProductDetailOpen ? 'flex' : 'hidden'} flex-col fixed bg-blue-950 rounded-lg border border-white top-78 right-0 w-[360px] h-[calc(100vh-78px)]`}>
+        <aside className={`${isProductDetailOpen ? 'flex' : 'hidden'} flex-col fixed bg-white rounded-lg border border-white top-78 right-0 w-[360px] h-[calc(100vh-78px)] overflow-y-scroll`}>
             <div className="flex justify-between items-center p-6">
                 <p className="font-sm">Detail</p>
                 <button onClick={ ()=> closeProductDetail() }>
-                    <XMarkIcon className="h-6 w-6 text-white" />
+                    <XMarkIcon className="h-6 w-6 text-black" />
                 </button>
                 
             </div>
@@ -28,7 +28,7 @@ function ProductDetail(){
                 <span className='font-medium text-md'>
                     {productToShow.title}
                 </span>
-                <span className='font-light text-sm'>
+                <span className='font-light text-sm mb-6'>
                     {productToShow.description}
                 </span>
             </div>

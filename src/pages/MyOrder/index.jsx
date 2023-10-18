@@ -27,7 +27,7 @@ function MyOrder() {
           <h1 className="text-xl font-bold">My Order</h1>
         </div> 
 
-        <div className='px-6 overflow-y-scroll'>
+        <div className='px-6'>
                 {
                     order?.[index]?.products.map(product => (
                         <OrderCard 

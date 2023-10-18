@@ -33,7 +33,7 @@ function CheckoutSideMenu(){
         setOrder([...order, orderToAdd])
         setCartProducts([])
         setCount(0)
-        
+        setSearchValue('')
     }
 
     return(

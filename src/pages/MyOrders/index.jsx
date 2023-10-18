@@ -12,7 +12,7 @@ function MyOrders() {
     return (
       <Layout>
         <div>
-          <h1>My Orders</h1>
+          <h1 className="text-xl font-bold mb-4">My Orders</h1>
         </div>
         
         {

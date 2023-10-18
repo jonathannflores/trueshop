@@ -6,42 +6,44 @@ import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 
 function Navbar(){
 
-    const {count} = useContext(ShoppingCartContext)
+    const {count,setSearchByCategory} = useContext(ShoppingCartContext)
 
     const navLeft=[
-        // {
-        //     to: '/',
-        //     text: 'TrueShop',
-        //     className: 'font-semibold text-4xl text-green-500'},
         {
             to: '/',
             text: 'All',
-            className: ''
+            className: '',
+            path: "men's clothing"
         },
         {
             to: '/clothes',
-            text: 'clothes',
-            className: ''
+            text: 'Clothes',
+            className: '',
+            path: "men's clothing"
         },
         {
             to: '/electronics',
-            text: 'electronics',
-            className: ''
+            text: 'Electronics',
+            className: '',
+            path: "electronics"
         },
         {
             to: '/furnitures',
-            text: 'furnitures',
-            className: ''
+            text: 'Furnitures',
+            className: '',
+            path: "electronics"
         },
         {
-            to: '/toys',
-            text: 'toys',
-            className: ''
+            to: '/jewelery',
+            text: 'Jewelery',
+            className: '',
+            path: "jewelery"
         },
         {
             to: '/others',
-            text: 'others',
-            className: ''
+            text: 'Others',
+            className: '',
+            path: "jewelery"
         },
     ]
     
@@ -86,6 +88,7 @@ function Navbar(){
                     <li key={link.text} className={link.className}>
                         <NavLink to={link.to} 
                             className={({isActive})=> isActive ? textDecoration : undefined }
+                            onClick={()=>setSearchByCategory(link.path)}
                         >
                             {link.text}
                         </NavLink>

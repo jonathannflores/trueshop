@@ -1,35 +1,46 @@
 import { Layout } from "../../Components/Layout"
 import { Card } from "../../Components/Card"
 import { ProductDetail } from "../../Components/ProductDetail"
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
+import { ShoppingCartContext } from "../../Context";
 
-const apiUrl = 'https://fakestoreapi.com';
+
 
 function Home() {
 
-    const [items, setItems] = useState(null);
+    const { items, 
+      setItems,
+      searchValue, 
+      setSearchValue,
+      filteredItems
+    } = useContext(ShoppingCartContext)
+    
+    console.log(window.location.pathname)
 
-    useEffect(()=>{
-      const fetchData = async()=>{
-        try{
-          const response = await fetch(`${apiUrl}/products`);
-          const data = await response.json()
-          setItems(data)
-        } catch(error){
-          console.log(error)
-        }
+    const renderView = ()=>{
+
+      if (filteredItems?.length > 0) {
+        return (
+          filteredItems?.map(item => (
+            <Card key={item.id} data={item} />
+          ))
+        )
+      } else {
+        return (
+          <div>We don't have anything...</div>
+        )
       }
-      fetchData()
-    }, [])
+    }  
 
     return (
       <Layout>
-        Home
+        <h1 className="font-semibold text-xl py-3">Exclusive Products</h1>
+        <input type="text" placeholder="Search a product"
+         className="w-80 mb-6 rounded-full border border-black p-4"
+        onChange={(event)=>setSearchValue(event.target.value)}/>
         <section className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-          {items?.map( item =>{
-            return <Card key={item.id} data={item} />
-          })}
+           {renderView()}
         </section>
 
         <ProductDetail />

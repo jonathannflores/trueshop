@@ -9,8 +9,8 @@ function OrderCard({ id, title, imageUrl, price, productDelete }){
                 </figure>
                 <p className='text-sm font-medium'>{title}</p>
             </div>
-            <div className='flex items-center gap-2'>
-                <p className='text-xl font-bold'>{price}</p>
+            <div className='flex items-center gap-2  pl-4'>
+                <p className='text-xl font-bold'>${price}</p>
                 {
                     productDelete && 
                     <button onClick={()=>productDelete(id)}>
