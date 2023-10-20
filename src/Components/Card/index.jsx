@@ -3,36 +3,26 @@ import {ShoppingCartContext} from "../../Context"
 import { CheckIcon, PlusIcon } from '@heroicons/react/24/solid'
 
 function Card(data){
-
-    const {
-        count,
-        setCount,
-        openProductDetail,
-        closeProductDetail,
-        setProductToShow,
-        cartProducts,
-        setCartProducts,
-        openCheckoutSideMenu,
-        closeCheckoutSideMenu
-    } = useContext(ShoppingCartContext)
+    // context.
+    const context = useContext(ShoppingCartContext)
 
     const showProductDetail = (productDetail) =>{
-        openProductDetail();
-        closeCheckoutSideMenu();
-        setProductToShow(productDetail)
+        context.openProductDetail();
+        context.closeCheckoutSideMenu();
+        context.setProductToShow(productDetail)
     }
 
     const addProductToCart = (event, productData) => {
         event.stopPropagation()
-        setCount(count+1)
-        setCartProducts([...cartProducts, productData])
-        openCheckoutSideMenu()
-        closeProductDetail()
-        console.log('CART: ', cartProducts)
+        context.setCount(context.count+1)
+        context.setCartProducts([...context.cartProducts, productData])
+        context.openCheckoutSideMenu()
+        context.closeProductDetail()
+        console.log('CART: ', context.cartProducts)
     }
 
     const renderIcon = (product) =>{
-        const isProductAdded = cartProducts.some(item => item.id === product.id)
+        const isProductAdded = context.cartProducts.some(item => item.id === product.id)
         return(
             isProductAdded ? (
                 <button className="absolute top-0 right-0 flex justify-center items-center bg-green-400 rounded-full p-1 h-6 w-6 m-2 text-black text-xl font-bold z-15"

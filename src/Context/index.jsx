@@ -3,7 +3,35 @@ import { createContext, useState, useEffect } from 'react';
 const ShoppingCartContext = createContext();
 const apiUrl = 'https://fakestoreapi.com';
 
+const initializeLocalStorage = () =>{
+  const accountInLocalStorage = localStorage.getItem('account')
+  const signOutInLocalStorage = localStorage.getItem('sign-out')
+
+  let parsedAccount;
+  let parsedSignOut
+
+  if(!accountInLocalStorage){
+    localStorage.setItem('account', JSON.stringify({}))
+    parsedAccount = {}
+  }else{
+    parsedAccount = JSON.parse(accountInLocalStorage)
+  }
+
+  if(!signOutInLocalStorage){
+    localStorage.setItem('sign-out', JSON.stringify(false))
+    parsedSignOut = false
+  }else{
+    parsedSignOut = JSON.parse(signOutInLocalStorage)
+  }
+}
+
 function ShoppingCartProvider( {children} ){
+
+    // My Account
+    const [account, setAccount] = useState({})
+    // Sign Out
+    const [signOut, setSignOut] = useState(false)
+
     // Shopping Cart : Increment Count
     const [count, setCount] = useState(0);
 
@@ -110,7 +138,11 @@ function ShoppingCartProvider( {children} ){
             setSearchValue,
             filteredItems,
             searchByCategory,
-            setSearchByCategory
+            setSearchByCategory,
+            account, 
+            setAccount,
+            signOut, 
+            setSignOut
         }}>
             {children}
         </ShoppingCartContext.Provider>
