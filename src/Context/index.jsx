@@ -111,8 +111,6 @@ function ShoppingCartProvider( {children} ){
     if (searchValue && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchValue, searchByCategory))
     if (!searchValue && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchValue, searchByCategory))
     if (!searchValue && !searchByCategory) setFilteredItems(filterBy(null, items, searchValue, searchByCategory))
-        // if(searchValue) setFilteredItems(filteredItemsBySearch(items,searchValue))
-        // if(searchByCategory) setFilteredItems(filteredItemsByCategory(items,searchByCategory))
     },[items, searchValue, searchByCategory])
 
     return(
