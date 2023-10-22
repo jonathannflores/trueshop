@@ -1,4 +1,4 @@
-import {useRoutes, BrowserRouter} from 'react-router-dom';
+import {useRoutes, BrowserRouter, Navigate} from 'react-router-dom';
 import { Home } from '../Home';
 import { MyAccount } from '../MyAccount';
 import {MyOrder} from '../MyOrder';
@@ -6,19 +6,23 @@ import {MyOrders} from '../MyOrders';
 import {SignIn} from '../SignIn';
 import {NotFound} from '../NotFound';
 import { Navbar } from '../../Components/Navbar';
-import { ShoppingCartProvider } from '../../Context';
+import { ShoppingCartContext, ShoppingCartProvider, initializeLocalStorage } from '../../Context';
 import './App.css';
+import { useContext } from 'react';
 
 
 function AppRoutes(){
+
+  const context = useContext(ShoppingCartContext)
+
   let routes = useRoutes([
-    { path: '/', element: <Home />},
-    { path: '/clothes', element: <Home />},
-    { path: '/electronics', element: <Home />},
-    { path: '/furnitures', element: <Home />},
-    { path: '/jewelery', element: <Home />},
-    { path: '/toys', element: <Home />},
-    { path: '/others', element: <Home />},
+    { path: '/', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+    { path: '/clothes', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+    { path: '/electronics', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+    { path: '/furnitures', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+    { path: '/jewelery', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+    { path: '/toys', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+    { path: '/others', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
     { path: '/my-account', element: <MyAccount />},
     { path: '/my-order', element: <MyOrder />},
     { path: '/my-orders', element: <MyOrders />},
@@ -31,6 +35,7 @@ function AppRoutes(){
 }
 
 function App() {
+  initializeLocalStorage()
   return (
     <ShoppingCartProvider>
       <BrowserRouter>

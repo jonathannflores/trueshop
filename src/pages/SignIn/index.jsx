@@ -8,12 +8,12 @@ function SignIn() {
 
   const form = useRef(null);
 
-  const account = localStorage.getItem('account')
-  const parsedAccount = JSON.parse(account)
+  // const account = localStorage.getItem('account')
+  // const parsedAccount = JSON.parse(account)
 
-  const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
-  const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
-  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
+  // const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
+  // const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
+  // const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
 
   const [view, setView] = useState('user-info')
 
@@ -45,16 +45,17 @@ function SignIn() {
       <div className="flex flex-col w-80" >
             <p >
               <span className="font-medium">Email: </span>
-              <span className="font-light">{parsedAccount?.email}</span>
+              <span className="font-light">{context.parsedAccount?.email}</span>
             </p>
             <p>
               <span className="font-medium">Password: </span>
-              <span className="font-light">{parsedAccount?.password}</span>
+              <span className="font-light">{context.parsedAccount?.password}</span>
             </p>
             <Link to='/'>
               <button className='w-full py-3 text-white font-medium bg-green-500 rounded-lg mt-4 mb-2 disabled:bg-gray-500 disabled:border-none'
-              disabled={!hasUserAnAccount} 
-              onClick={()=>handleSignIn}>
+              disabled={!context.hasUserAnAccount} 
+              onClick={()=>{handleSignIn();
+              context.closeProductDetail()} }>
                 Login
               </button>
             </Link>
@@ -63,7 +64,7 @@ function SignIn() {
               <a href="" className="font-light text-xs underline underline-offset-4">Forget my password</a>
             </p>
             <button className='w-full py-3  text-green-500 font-medium border border-green-500 rounded-lg mt-4 disabled:bg-gray-500 disabled:text-white disabled:border-none'
-            disabled={hasUserAnAccount}
+            disabled={context.hasUserAnAccount}
             onClick={()=>setView('create-user-info')}>Sign Up</button>
         </div>
     )
@@ -76,19 +77,19 @@ function SignIn() {
         <div className="flex flex-col ">
           <label htmlFor="name">Your name: </label>
           <input type="text" id="name" name="name" 
-          defaultValue={parsedAccount?.name} placeholder="Name" 
+          defaultValue={context.parsedAccount?.name} placeholder="Name" 
           className="rounded-lg border border-black py-2 px-4 placeholder:font-light placeholder:text-sm" />
         </div>
         <div className="flex flex-col ">
           <label htmlFor="email">Your email: </label>
           <input type="text" id="email" name="email" 
-          defaultValue={parsedAccount?.email} placeholder="user@example.com" 
+          defaultValue={context.parsedAccount?.email} placeholder="user@example.com" 
           className="rounded-lg border border-black py-2 px-4 placeholder:font-light placeholder:text-sm" />
         </div>
         <div className="flex flex-col ">
           <label htmlFor="password">Your password: </label>
           <input type="text" id="password" name="password" 
-          defaultValue={parsedAccount?.password} placeholder="*****" 
+          defaultValue={context.parsedAccount?.password} placeholder="*****" 
           className="rounded-lg border border-black py-2 px-4 placeholder:font-light placeholder:text-sm" />
         </div>
         <Link to='/'>

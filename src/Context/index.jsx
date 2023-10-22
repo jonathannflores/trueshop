@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react';
 const ShoppingCartContext = createContext();
 const apiUrl = 'https://fakestoreapi.com';
 
-const initializeLocalStorage = () =>{
+export const initializeLocalStorage = () =>{
   const accountInLocalStorage = localStorage.getItem('account')
   const signOutInLocalStorage = localStorage.getItem('sign-out')
 
@@ -24,6 +24,8 @@ const initializeLocalStorage = () =>{
     parsedSignOut = JSON.parse(signOutInLocalStorage)
   }
 }
+
+
 
 function ShoppingCartProvider( {children} ){
 
@@ -65,6 +67,18 @@ function ShoppingCartProvider( {children} ){
 
       // Get Products by category
     const [searchByCategory, setSearchByCategory] = useState(null);
+    
+    const signOutC = localStorage.getItem('sign-out')
+    const parsedSignOut = JSON.parse(signOutC)
+    
+    const accountC = localStorage.getItem('account')
+    const parsedAccount = JSON.parse(accountC)
+
+    const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
+    const noAccountInLocalState = account ? Object.keys(account).length === 0 : true
+    const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
+    const isUserSignOut = signOut || parsedSignOut
+    
     
   
     useEffect(()=>{
@@ -140,7 +154,10 @@ function ShoppingCartProvider( {children} ){
             account, 
             setAccount,
             signOut, 
-            setSignOut
+            setSignOut,
+            isUserSignOut,
+            hasUserAnAccount,
+            parsedAccount
         }}>
             {children}
         </ShoppingCartContext.Provider>
