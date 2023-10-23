@@ -37,7 +37,7 @@ function App() {
   initializeLocalStorage()
   return (
     <ShoppingCartProvider>
-      <BrowserRouter basename="/trueshop">
+      <BrowserRouter basename="/">
         <AppRoutes />
         <Navbar />
         
