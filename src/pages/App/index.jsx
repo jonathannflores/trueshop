@@ -14,7 +14,6 @@ import { useContext } from 'react';
 function AppRoutes(){
 
   const context = useContext(ShoppingCartContext)
-
   let routes = useRoutes([
     { path: '/', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
     { path: '/clothes', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
@@ -38,7 +37,7 @@ function App() {
   initializeLocalStorage()
   return (
     <ShoppingCartProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/trueshop">
         <AppRoutes />
         <Navbar />
         
