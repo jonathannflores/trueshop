@@ -67,6 +67,8 @@ function ShoppingCartProvider( {children} ){
 
       // Get Products by category
     const [searchByCategory, setSearchByCategory] = useState(null);
+
+    const [loading, setLoading] = useState(true)
     
     const signOutC = localStorage.getItem('sign-out')
     const parsedSignOut = JSON.parse(signOutC)
@@ -87,6 +89,7 @@ function ShoppingCartProvider( {children} ){
           const response = await fetch(`${apiUrl}/products`);
           const data = await response.json()
           setItems(data)
+          setLoading(false)
         } catch(error){
           console.log(error)
         }
@@ -157,7 +160,8 @@ function ShoppingCartProvider( {children} ){
             setSignOut,
             isUserSignOut,
             hasUserAnAccount,
-            parsedAccount
+            parsedAccount,
+            loading
         }}>
             {children}
         </ShoppingCartContext.Provider>

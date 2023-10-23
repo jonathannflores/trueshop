@@ -21,7 +21,7 @@ function AppRoutes(){
     { path: '/electronics', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
     { path: '/furnitures', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
     { path: '/jewelery', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
-    { path: '/toys', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
+    { path: '/jewelery', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
     { path: '/others', element: context.hasUserAnAccount && !context.isUserSignOut ? <Home /> : <Navigate replace to={'/sign-in'} />},
     { path: '/my-account', element: <MyAccount />},
     { path: '/my-order', element: <MyOrder />},

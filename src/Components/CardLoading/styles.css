@@ -1,7 +1,8 @@
 .loading{
-    background: linear-gradient(90deg, rgb(73, 57, 92), rgb(98, 59, 129));
-    background-size: 400% 400%;
+    background: linear-gradient(90deg, rgb(145, 145, 145), rgb(224, 223, 223));
+    /* background-size: 400% 400%; */
     animation: loadingAnimation 1s ease-in-out infinite;
+    
 }
 
 @keyframes loadingAnimation {

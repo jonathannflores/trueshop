@@ -3,7 +3,7 @@ import {ShoppingCartContext} from "../../Context"
 import { CheckIcon, PlusIcon } from '@heroicons/react/24/solid'
 
 function Card(data){
-    // context.
+    
     const context = useContext(ShoppingCartContext)
 
     const showProductDetail = (productDetail) =>{
@@ -18,7 +18,6 @@ function Card(data){
         context.setCartProducts([...context.cartProducts, productData])
         context.openCheckoutSideMenu()
         context.closeProductDetail()
-        console.log('CART: ', context.cartProducts)
     }
 
     const renderIcon = (product) =>{
@@ -48,7 +47,7 @@ function Card(data){
                 {renderIcon(data.data)}
             </figure>
             <div className="h-1/5 w-full px-2">
-                <p className="flex justify-between">
+                <p className="flex justify-between items-center">
                     <span className="text-sm font-sm truncate mr-2 line-clamp-2">{data.data.title}</span>
                     <span className="font-semibold">${data.data.price}</span>
                 </p>

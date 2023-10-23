@@ -4,17 +4,26 @@ import { ProductDetail } from "../../Components/ProductDetail"
 import { useContext } from "react";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 import { ShoppingCartContext } from "../../Context";
+import { CardLoading } from "../../Components/CardLoading";
 
 
 
 function Home() {
 
     const context = useContext(ShoppingCartContext)
-    
 
     const renderView = ()=>{
-
-      if (context.filteredItems?.length > 0) {
+      if (context.loading) {
+        return (
+          <div className="grid gap-8 grid-cols-4 w-full max-w-screen-lg">
+            <p>cargando...</p>
+            <CardLoading />
+            <CardLoading />
+            <CardLoading />
+            
+          </div>
+        );
+      }else if (context.filteredItems?.length > 0) {
         return (
           context.filteredItems?.map(item => (
             <Card key={item.id} data={item} />

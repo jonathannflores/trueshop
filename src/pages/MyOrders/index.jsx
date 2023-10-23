@@ -1,15 +1,19 @@
 import { Layout } from "../../Components/Layout"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import {ShoppingCartContext} from "../../Context"
 import { Link } from "react-router-dom"
 import { OrdersCard } from "../../Components/OrdersCard"
 
 function MyOrders() {
   const context = useContext(ShoppingCartContext)
+  useEffect(()=>{
+    context.setSearchValue('');
+  }, [])
+
     return (
       <Layout>
         <div>
-          <h1 className="text-xl font-bold mb-4">My Orders</h1>
+          <h1 className="font-medium text-xl mb-4">My Orders</h1>
         </div>
         
         {
@@ -22,7 +26,7 @@ function MyOrders() {
               />
             </Link>
             ))
-                }
+        }
       </Layout>
     )
   }

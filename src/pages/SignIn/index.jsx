@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { Link, Navigate } from "react-router-dom"
 import { Layout } from "../../Components/Layout"
 import { ShoppingCartContext } from "../../Context"
@@ -6,15 +6,12 @@ import { ShoppingCartContext } from "../../Context"
 function SignIn() {
   const context = useContext(ShoppingCartContext)
 
+  useEffect(()=>{
+    context.setSearchValue('');
+  }, [])
+
   const form = useRef(null);
-
-  // const account = localStorage.getItem('account')
-  // const parsedAccount = JSON.parse(account)
-
-  // const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
-  // const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
-  // const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
-
+  
   const [view, setView] = useState('user-info')
 
   const handleSignIn = () => {

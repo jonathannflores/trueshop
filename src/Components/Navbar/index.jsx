@@ -18,7 +18,7 @@ function Navbar(){
         if(context.hasUserAnAccount && !context.isUserSignOut){
             return(<>
                 <li className='text-gray-400'>
-                    jonathan@example.com
+                {context.parsedAccount?.email}
                 </li>
                 <li>
                     <NavLink
@@ -119,12 +119,12 @@ function Navbar(){
                 </li>
                 <li>
                     <NavLink
-                        to='/toys'
+                        to='/jewelery'
                         onClick={() => context.setSearchByCategory('jewelery')}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                         }>
-                        Toys
+                        Jewelery
                     </NavLink>
                 </li>
                 <li>
