@@ -1,4 +1,4 @@
-import {useRoutes, BrowserRouter, Navigate} from 'react-router-dom';
+import {useRoutes, Navigate, HashRouter} from 'react-router-dom';
 import { Home } from '../Home';
 import { MyAccount } from '../MyAccount';
 import {MyOrder} from '../MyOrder';
@@ -37,11 +37,11 @@ function App() {
   initializeLocalStorage()
   return (
     <ShoppingCartProvider>
-      <BrowserRouter basename="/">
+      <HashRouter basename="/">
         <AppRoutes />
         <Navbar />
         
-      </BrowserRouter>
+      </HashRouter>
     </ShoppingCartProvider>
   )
 }
